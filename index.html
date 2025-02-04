@@ -23,6 +23,7 @@
             bottom: 100px;
             left: 50px;
             z-index: 2;
+            transition: transform 0.3s;
         }
         .obstacle {
             width: 40px;
@@ -84,6 +85,7 @@
         jumpButton.addEventListener('click', jump);
 
         function jump() {
+            console.log("Jump triggered!");  // Отладка
             if (!isJumping && gameActive) {
                 isJumping = true;
                 player.style.transform = 'translateY(-100px)';
@@ -96,6 +98,7 @@
 
         // Генерация препятствий
         function createObstacle() {
+            console.log("Creating obstacle...");  // Отладка
             if (!gameActive) return;
 
             const obstacle = document.createElement('div');
