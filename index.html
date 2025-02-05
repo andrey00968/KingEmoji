@@ -77,8 +77,12 @@
         let gameActive = true;
 
         // Инициализация Telegram Web App
-        Telegram.WebApp.ready();
-        Telegram.WebApp.expand();
+        if (typeof Telegram !== 'undefined') {
+            Telegram.WebApp.ready();
+            Telegram.WebApp.expand();
+        } else {
+            console.warn("Telegram Web App не загружен. Игра работает в режиме браузера.");
+        }
 
         // Прыжок по клику/тапу
         game.addEventListener('click', jump);
@@ -139,7 +143,9 @@
 
         function gameOver() {
             gameActive = false;
-            Telegram.WebApp.sendData(score.toString());
+            if (typeof Telegram !== 'undefined') {
+                Telegram.WebApp.sendData(score.toString());
+            }
             alert(`Game Over! Score: ${score}\nRestarting...`);
             location.reload();
         }
@@ -148,4 +154,5 @@
         setInterval(createObstacle, 1500);
     </script>
 </body>
+</html>
 </html>
